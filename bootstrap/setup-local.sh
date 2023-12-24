@@ -49,14 +49,14 @@ check_required_commands
 create_cluster "local-cluster"
 
 # Apply the bootstrap Kustomize manifests
-kustomize_apply "../applications/metallb" || true
+#kustomize_apply "../applications/metallb" || true
 kustomize_apply "../applications/argocd" || true
+kustomize_apply "../applications/metallb" || true
 kubectl wait --for=condition=available --timeout=300s deployment/argocd-server -n argocd
-kustomize_apply "../applications/argocd"
-
-echo "Waiting for MetalLB to be ready..."
 kubectl wait --for=condition=available --timeout=300s deployment/controller -n metallb-system
+kustomize_apply "../applications/argocd"
 kustomize_apply "../applications/metallb"
+kustomize_apply "../templates"
 
 # Get the ArgoCD information
 ARGOCD_SERVER_IP=$(kubectl get svc -n argocd argocd-server -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
