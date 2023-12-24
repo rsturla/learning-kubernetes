@@ -49,14 +49,14 @@ check_required_commands
 create_cluster "local-cluster"
 
 # Apply the bootstrap Kustomize manifests
-#kustomize_apply "../applications/metallb" || true
 kustomize_apply "../applications/argocd" || true
 kustomize_apply "../applications/metallb" || true
 kubectl wait --for=condition=available --timeout=300s deployment/argocd-server -n argocd
 kubectl wait --for=condition=available --timeout=300s deployment/controller -n metallb-system
-kustomize_apply "../applications/argocd"
+# We must apply the manifests again to workaround a race condition with the CRDs
 kustomize_apply "../applications/metallb"
-kustomize_apply "../templates"
+# Register the ArgoCD and MetalLB applications with ArgoCD
+kustomize_apply "../applications/_apps"
 
 # Get the ArgoCD information
 ARGOCD_SERVER_IP=$(kubectl get svc -n argocd argocd-server -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
