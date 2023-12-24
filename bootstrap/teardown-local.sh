@@ -42,4 +42,4 @@ delete_cluster() {
 check_required_commands
 
 # Delete the cluster
-delete_cluster "local-cluster-1"
+delete_cluster "local-cluster"

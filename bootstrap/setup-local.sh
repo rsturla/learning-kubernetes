@@ -38,8 +38,33 @@ create_cluster() {
     kind create cluster --name "$1" --config ./config/kind-config.yaml
 }
 
+kustomize_apply() {
+    kubectl apply -k "$1"
+}
+
 # Call the function to check for required commands
 check_required_commands
 
 # Create the cluster
-create_cluster "local-cluster-1"
+create_cluster "local-cluster"
+
+# Apply the bootstrap Kustomize manifests
+kustomize_apply "../applications/metallb" || true
+kustomize_apply "../applications/argocd" || true
+kubectl wait --for=condition=available --timeout=300s deployment/argocd-server -n argocd
+kustomize_apply "../applications/argocd"
+
+echo "Waiting for MetalLB to be ready..."
+kubectl wait --for=condition=available --timeout=300s deployment/controller -n metallb-system
+kustomize_apply "../applications/metallb"
+
+# Get the ArgoCD information
+ARGOCD_SERVER_IP=$(kubectl get svc -n argocd argocd-server -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+ARGOCD_SERVER_PASSWORD=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
+
+# Output the ArgoCD server URL and password
+echo "..."
+echo "ArgoCD:"
+echo -e "  - URL: https://${ARGOCD_SERVER_IP}"
+echo -e "  - Username: admin"
+echo -e "  - Password: ${ARGOCD_SERVER_PASSWORD}"
