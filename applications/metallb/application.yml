@@ -2,17 +2,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd
-  namespace: bootstrap
+  name: metallb
+  namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: argocd
+    namespace: metallb-system
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: applications/argocd
+    path: applications/metallb
     repoURL: https://github.com/rsturla/learning-kubernetes
     targetRevision: local-cluster-bootstrapping
   syncPolicy:

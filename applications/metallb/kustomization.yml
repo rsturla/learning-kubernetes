@@ -3,5 +3,6 @@ kind: Kustomization
 namespace: metallb-system
 
 resources:
+- ./application.yml
 - https://raw.githubusercontent.com/metallb/metallb/main/config/manifests/metallb-native.yaml
-- metallb-ipam.yml
+- ./metallb-ipam.yml
