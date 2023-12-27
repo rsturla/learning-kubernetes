@@ -6,3 +6,4 @@ resources:
 - ./apps.yml
 - ./argocd.yml
 - ./metallb.yml
+- ./nginx-ingress.yml
