@@ -8,7 +8,7 @@ spec:
   destination:
     namespace: metallb-system
     server: https://kubernetes.default.svc
-  project: default
+  project: bootstrap
   source:
     path: applications/metallb
     repoURL: https://github.com/rsturla/learning-kubernetes
