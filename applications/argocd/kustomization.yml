@@ -7,9 +7,3 @@ resources:
 - ./namespace.yml
 - https://raw.githubusercontent.com/argoproj/argo-cd/master/manifests/install.yaml
 - ./ingress.yml
-
-patches:
-- path: loadbalancer-patch.yml
-  target:
-    kind: Service
-    name: argocd-server
