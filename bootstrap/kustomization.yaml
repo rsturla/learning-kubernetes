@@ -7,3 +7,4 @@ resources:
 - ./argocd.yml
 - ./metallb.yml
 - ./nginx-ingress.yml
+- ./cert-manager.yml

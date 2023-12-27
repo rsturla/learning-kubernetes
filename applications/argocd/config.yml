@@ -14,4 +14,3 @@ data:
         hs = {}
         hs.status = "Healthy"
         return hs
-  server.insecure: "true"
