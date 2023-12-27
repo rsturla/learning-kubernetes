@@ -12,6 +12,5 @@ data:
     extensions/Ingress:
       health.lua: |
         hs = {}
-        hs["status"] = "Healthy"
-        hs["message"] = "Healthy"
+        hs.status = "Healthy"
         return hs
