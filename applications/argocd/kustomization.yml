@@ -6,5 +6,10 @@ namespace: argocd
 resources:
 - ./namespace.yml
 - https://raw.githubusercontent.com/argoproj/argo-cd/master/manifests/install.yaml
-- ./config.yml
 - ./ingress.yml
+
+patches:
+- path: config.yml
+  target:
+    kind: ConfigMap
+    name: argocd-cm
