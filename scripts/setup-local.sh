@@ -44,6 +44,10 @@ kustomize_apply() {
     kubectl apply -k "$1"
 }
 
+kubectl_apply() {
+    kubectl apply -f "$1"
+}
+
 # Call the function to check for required commands
 check_required_commands
 
@@ -53,7 +57,7 @@ create_cluster "local-cluster"
 # Apply the bootstrap Kustomize manifests
 kustomize_apply "$SCRIPT_DIR/../applications/argocd"
 kubectl wait --for=condition=available --timeout=300s deployment/argocd-server -n argocd
-kustomize_apply "$SCRIPT_DIR/../bootstrap"
+kubectl_apply "$SCRIPT_DIR/../bootstrap"
 
 # Get the ArgoCD information
 ARGOCD_SERVER_IP=$(kubectl get svc -n argocd argocd-server -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
