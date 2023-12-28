@@ -11,6 +11,12 @@ resources:
   - argocd-ui-ingress.yaml
   - argocd-ui-ingressroute.yaml
 
-patchesStrategicMerge:
-  - argocd-cm.yaml
-  - argocd-cmd-params-cm.yaml
+patches:
+  - path: argocd-cm.yaml
+    target:
+      kind: ConfigMap
+      name: argocd-cm
+  - path: argocd-cmd-params-cm.yaml
+    target:
+      kind: ConfigMap
+      name: argocd-cmd-params-cm
