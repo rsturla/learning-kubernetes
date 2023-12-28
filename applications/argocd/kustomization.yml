@@ -9,7 +9,6 @@ resources:
   - github.com:argoproj/argo-cd.git/manifests/cluster-install?ref=v2.6.4
   - argocd-namespace.yml
   - argocd-ui-ingress.yml
-  - argocd-ui-ingressroute.yml
 
 patches:
   - path: argocd-cm.yml
