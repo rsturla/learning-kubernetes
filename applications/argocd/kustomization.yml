@@ -7,16 +7,16 @@ namespace: argocd
 # https://github.com/argoproj/argo-cd/tags
 resources:
   - github.com:argoproj/argo-cd.git/manifests/cluster-install?ref=v2.6.4
-  - argocd-namespace.yaml
-  - argocd-ui-ingress.yaml
-  - argocd-ui-ingressroute.yaml
+  - argocd-namespace.yml
+  - argocd-ui-ingress.yml
+  - argocd-ui-ingressroute.yml
 
 patches:
-  - path: argocd-cm.yaml
+  - path: argocd-cm.yml
     target:
       kind: ConfigMap
       name: argocd-cm
-  - path: argocd-cmd-params-cm.yaml
+  - path: argocd-cmd-params-cm.yml
     target:
       kind: ConfigMap
       name: argocd-cmd-params-cm
