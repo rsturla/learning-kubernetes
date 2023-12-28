@@ -6,7 +6,7 @@ namespace: argocd
 # To upgrade ArgoCD, increment the version here
 # https://github.com/argoproj/argo-cd/tags
 resources:
-  - github.com:argoproj/argo-cd.git/manifests/cluster-install?ref=v2.6.4
+  - github.com:argoproj/argo-cd.git/manifests/cluster-install?ref=v2.9.3
   - argocd-namespace.yml
   - argocd-ui-ingress.yml
 
