@@ -4,17 +4,15 @@ kind: Application
 metadata:
   name: metallb
   namespace: argocd
-  annotations:
-    argocd.argoproj.io/sync-wave: '10'
 spec:
+  destination:
+    namespace: metallb-system
+    server: https://kubernetes.default.svc
   project: default
   source:
     repoURL: https://metallb.github.io/metallb
     targetRevision: v0.13.12
     chart: metallb
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: metallb-system
   syncPolicy:
     automated:
       prune: true
