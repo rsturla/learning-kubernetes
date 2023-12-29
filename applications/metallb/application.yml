@@ -11,14 +11,6 @@ spec:
   source:
     repoURL: https://metallb.github.io/metallb
     targetRevision: v0.13.12
-    helm:
-      values: |-
-        configInline:
-          address-pools:
-            - name: default
-              protocol: layer2
-              addresses:
-                - 172.19.255.200-172.19.255.250
     chart: metallb
   destination:
     server: https://kubernetes.default.svc
