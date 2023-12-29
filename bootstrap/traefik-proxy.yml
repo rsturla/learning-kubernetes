@@ -1,0 +1,21 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik-proxy-app
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: bootstrap
+  source:
+    path: applications/treafik-proxy
+    repoURL: https://github.com/rsturla/learning-kubernetes
+    targetRevision: local-cluster-bootstrapping
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
