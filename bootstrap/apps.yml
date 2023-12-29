@@ -39,7 +39,7 @@ spec:
   source:
     path: bootstrap/
     repoURL: https://github.com/rsturla/learning-kubernetes
-    targetRevision: f71ae52
+    targetRevision: local-cluster-bootstrapping
   syncPolicy:
     automated:
       prune: true
