@@ -10,7 +10,7 @@ spec:
     server: https://kubernetes.default.svc
   project: bootstrap
   source:
-    path: applications/treafik-proxy
+    path: applications/traefik-proxy
     repoURL: https://github.com/rsturla/learning-kubernetes
     targetRevision: local-cluster-bootstrapping
   syncPolicy:
