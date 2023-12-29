@@ -10,7 +10,7 @@ spec:
     server: https://kubernetes.default.svc
   project: bootstrap
   source:
-    path: applications/nginx-ingress
+    path: applications/ingress-nginx
     repoURL: https://github.com/rsturla/learning-kubernetes
     targetRevision: local-cluster-bootstrapping
   syncPolicy:
