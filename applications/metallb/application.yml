@@ -6,8 +6,6 @@ metadata:
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: '11'
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     namespace: metallb-system
@@ -31,8 +29,6 @@ metadata:
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: '12'
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     namespace: metallb-system
