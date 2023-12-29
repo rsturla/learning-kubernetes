@@ -14,7 +14,7 @@ spec:
   source:
     path: applications/metallb
     repoURL: https://github.com/rsturla/learning-kubernetes
-    targetRevision: local-cluster-bootstrapping
+    targetRevision: f71ae52
   syncPolicy:
     automated:
       prune: true
