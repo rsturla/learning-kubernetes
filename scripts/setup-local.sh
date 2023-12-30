@@ -66,6 +66,6 @@ ARGOCD_SERVER_PASSWORD=$(kubectl -n argocd get secret argocd-initial-admin-secre
 # Output the ArgoCD server URL and password
 echo "..."
 echo "ArgoCD:"
-echo -e "  - URL: https://argocd.sturla.dev"
+echo -e "  - URL: https://argocd.example.com"
 echo -e "  - Username: admin"
 echo -e "  - Password: ${ARGOCD_SERVER_PASSWORD}"
