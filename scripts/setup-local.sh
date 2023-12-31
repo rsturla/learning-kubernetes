@@ -57,7 +57,7 @@ create_cluster "local-cluster"
 # Apply the bootstrap Kustomize manifests
 kustomize_apply "$SCRIPT_DIR/../applications/argocd"
 kubectl wait --for=condition=available --timeout=300s deployment/argocd-server -n argocd
-kubectl_apply "$SCRIPT_DIR/../bootstrap"
+kubectl_apply "$SCRIPT_DIR/../applications/apps.yml"
 
 # Get the ArgoCD information
 ARGOCD_SERVER_URL=$(kubectl -n argocd get ingress argocd-server-ingress -o jsonpath="{.spec.rules[0].host}")
