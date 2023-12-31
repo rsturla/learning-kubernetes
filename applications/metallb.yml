@@ -7,14 +7,14 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: '10'
 spec:
-  destination:
-    namespace: metallb-system
-    server: https://kubernetes.default.svc
   project: bootstrap
   source:
     repoURL: https://metallb.github.io/metallb
     targetRevision: v0.13.12
     chart: metallb
+  destination:
+    namespace: metallb-system
+    server: https://kubernetes.default.svc
   syncPolicy:
     automated:
       prune: true
@@ -30,14 +30,14 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: '12'
 spec:
-  destination:
-    namespace: metallb-system
-    server: https://kubernetes.default.svc
   project: default
   source:
     path: applications/metallb-config
     repoURL: https://github.com/rsturla/learning-kubernetes
     targetRevision: local-cluster-bootstrapping
+  destination:
+    namespace: metallb-system
+    server: https://kubernetes.default.svc
   syncPolicy:
     automated:
       prune: true

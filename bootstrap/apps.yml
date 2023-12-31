@@ -30,14 +30,14 @@ metadata:
   name: apps
   namespace: argocd
 spec:
-  destination:
-    namespace: argocd
-    server: https://kubernetes.default.svc
   project: bootstrap
   source:
     path: applications/
     repoURL: https://github.com/rsturla/learning-kubernetes
     targetRevision: local-cluster-bootstrapping
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
   syncPolicy:
     automated:
       prune: true
