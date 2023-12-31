@@ -1,0 +1,46 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metallb
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: '10'
+spec:
+  project: bootstrap
+  source:
+    repoURL: https://metallb.github.io/metallb
+    targetRevision: v0.13.12
+    chart: metallb
+  destination:
+    namespace: metallb-system
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metallb-config
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: '12'
+spec:
+  project: default
+  source:
+    path: applications/metallb-config
+    repoURL: https://github.com/rsturla/learning-kubernetes
+    targetRevision: local-cluster-bootstrapping
+  destination:
+    namespace: metallb-system
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
