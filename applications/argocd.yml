@@ -2,15 +2,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cert-manager-app
+  name: argocd
   namespace: argocd
 spec:
   destination:
-    namespace: cert-manager
+    namespace: argocd
     server: https://kubernetes.default.svc
   project: bootstrap
   source:
-    path: applications/cert-manager
+    path: applications/argocd
     repoURL: https://github.com/rsturla/learning-kubernetes
     targetRevision: local-cluster-bootstrapping
   syncPolicy:

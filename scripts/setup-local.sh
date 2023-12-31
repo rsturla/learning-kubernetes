@@ -60,12 +60,19 @@ kubectl wait --for=condition=available --timeout=300s deployment/argocd-server -
 kubectl_apply "$SCRIPT_DIR/../bootstrap"
 
 # Get the ArgoCD information
-ARGOCD_SERVER_IP=$(kubectl get svc -n argocd argocd-server -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+ARGOCD_SERVER_URL=$(kubectl -n argocd get ingress argocd-server-ingress -o jsonpath="{.spec.rules[0].host}")
 ARGOCD_SERVER_PASSWORD=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
 
-# Output the ArgoCD server URL and password
+# Output the ArgoCD server URL and password to the console
 echo "..."
-echo "ArgoCD:"
+echo "ArgoCD (local-cluster):"
 echo -e "  - URL: https://argocd.example.com"
 echo -e "  - Username: admin"
 echo -e "  - Password: ${ARGOCD_SERVER_PASSWORD}"
+
+# Output the ArgoCD server URL and password to a file
+cat <<EOF > "$SCRIPT_DIR/../.argocd"
+ARGOCD_SERVER_URL=https://argocd.example.com
+ARGOCD_SERVER_USERNAME=admin
+ARGOCD_SERVER_PASSWORD=$ARGOCD_SERVER_PASSWORD
+EOF

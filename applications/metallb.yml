@@ -10,7 +10,7 @@ spec:
   destination:
     namespace: metallb-system
     server: https://kubernetes.default.svc
-  project: default
+  project: bootstrap
   source:
     repoURL: https://metallb.github.io/metallb
     targetRevision: v0.13.12
