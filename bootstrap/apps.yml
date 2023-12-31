@@ -11,6 +11,9 @@ metadata:
 spec:
   sourceRepos:
     - "https://github.com/rsturla/learning-kubernetes"
+    - "https://charts.jetstack.io"
+    - "https://kubernetes.github.io/ingress-nginx"
+    - "https://metallb.github.io/metallb"
   destinations:
     - namespace: argocd
       server: https://kubernetes.default.svc
